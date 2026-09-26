@@ -145,6 +145,11 @@
   .live-dot{width:10px; height:10px; border-radius:50%; background:var(--teal); flex:none}
   .thanks{font-family:"Poppins",system-ui,sans-serif; font-weight:600; font-size:1.15rem}
   .defn{font-weight:600; font-size:1.02rem; background:var(--teal-soft); border-radius:14px; padding:14px 16px}
+  .deadline{font-weight:700; color:var(--teal-strong); margin-top:-4px}
+  .price{align-self:center; max-width:100%; align-items:center; text-align:center}
+  .price .price-row{justify-content:center}
+  .cta{align-self:center; max-width:100%; text-align:center}
+  .fine{text-align:center}
   footer{text-align:center; font-size:.82rem; color:var(--ink-2)}
 
   .screen{animation:rise .35s ease both}
@@ -403,7 +408,7 @@ const CLARITY_INCLUDES = `
   </ul>`;
 const CLARITY_PRICE = `
   <div class="price">
-    <span class="badge">Precio de entrada</span>
+    <span class="badge">Oferta por tiempo limitado</span>
     <div class="price-row">
       <span class="was">59 USD</span>
       <span class="amount">49 USD <small>/ mes</small></span>
@@ -444,10 +449,9 @@ function viewResult(){
           <li>Cada semana nos vemos en una clase en vivo donde practicas y te doy feedback, así que no avanzas completamente solo/a.</li>
         </ul>
       </div>
-      <div class="includes-wrap"><h3>Lo que incluye</h3>${CLARITY_INCLUDES}</div>
       <p class="muted">Lo que no incluye es el plan personalizado, el seguimiento 1:1 y el contacto directo conmigo. Si más adelante quieres ese acompañamiento, puedes pasarte a Fluency.</p>
       ${CLARITY_PRICE}
-      <a class="btn block" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Clarity</a>
+      <a class="btn cta" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Clarity</a>
       ${CLARITY_FAQ()}
       <div class="alt">
         <button class="link" data-act="undoDownsell" style="align-self:flex-start">Volver a ver Fluency</button>
@@ -465,26 +469,15 @@ function viewResult(){
         <p>Veo que ya tienes base y que puedes mantener una conversación, aunque con dudas y bloqueos. No te falta información: te falta un plan claro y alguien que te acompañe mientras lo cumples.</p>
         <p>Por eso quiero acompañarte de cerca. En Fluency trabajamos juntos tu speaking y tu pronunciación, y también lo que casi nunca se trabaja: los nervios, el hábito y la confianza para que uses tu inglés donde lo necesitas.</p>
       </div>
-      <div class="includes-wrap">
-        <h3>Lo que vas a tener conmigo</h3>
-        <ul class="includes" style="margin-top:10px">
-          <li>Dos clases en vivo cada semana, una de pronunciación y una de speaking, en grupos de máximo 6 estudiantes.</li>
-          <li>Un plan claro para que sepas exactamente en qué enfocarte y no sigas perdiendo tiempo.</li>
-          <li>Seguimiento mensual 1:1 conmigo para revisar tu proceso individual.</li>
-          <li>Contacto directo conmigo para resolver dudas en tiempo real, y feedback constante.</li>
-          <li>Banco de recursos grabados: cursos de pronunciación y video lecciones, incluidos los exclusivos de Fluency.</li>
-          <li>Comunidad privada para hacer preguntas y compartir tu práctica.</li>
-        </ul>
-      </div>
       <div class="price">
-        ${offer?`<span class="badge">Oferta Fluency Mode · hasta el 30 de septiembre</span>`:""}
+        ${offer?`<span class="badge">Oferta Fluency Mode · tiempo limitado</span><p class="deadline">Válida solo hasta el 30 de septiembre</p>`:""}
         <div class="price-row">
           ${offer?`<span class="was">265 USD</span><span class="amount">227 USD <small>/ mes</small></span>`:`<span class="amount">265 USD <small>/ mes</small></span>`}
         </div>
         <p class="value">Pago mensual, cancelas cuando quieras.</p>
       </div>
-      <a class="btn block" href="${CONFIG.fluencyUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Fluency</a>
-      <p class="fine" style="text-align:center">En la página verás el video y todos los detalles. Para empezar, dale clic a “Quiero unirme”.</p>
+      <a class="btn cta" href="${CONFIG.fluencyUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Fluency</a>
+      <p class="fine">En la página verás el video y todos los detalles. Para empezar, dale clic a “Quiero unirme”.</p>
       ${faq([
         ["¿Cuánto dura Fluency?", "Fluency tiene 3 fases: fase 1 (3 meses), fase 2 (6 meses) y fase 3 (3 meses). Pero el tiempo depende de ti. El programa no termina cuando acabas un libro o haces un examen, sino cuando alcanzas los objetivos de cada fase. Yo te acompaño con retroalimentación en cada una para que puedas avanzar."],
         ["¿Cómo son las clases?", "Tienes dos clases en vivo cada semana: una de pronunciación y una de speaking. Los grupos son de máximo 6 estudiantes, así que hablas en todas las clases."],
@@ -518,9 +511,8 @@ function viewResult(){
       ${why}
       <p>Me encantaría verte en la próxima clase en vivo y acompañarte en este proceso.</p>
     </div>
-    <div class="includes-wrap"><h3>Lo que vas a tener conmigo</h3>${CLARITY_INCLUDES}</div>
     ${CLARITY_PRICE}
-    <a class="btn block" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Clarity</a>
+    <a class="btn cta" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Clarity</a>
     ${CLARITY_FAQ()}
     <div class="alt">
       <button class="link" data-act="restart" style="align-self:flex-start">Hacer el quiz de nuevo</button>
