@@ -112,7 +112,7 @@
   .fine{font-size:.82rem; color:var(--ink-2)}
 
   /* result */
-  .result-top{display:flex; flex-direction:column; gap:10px}
+  .result-top{display:flex; flex-direction:column; gap:24px}
   .pname{font-family:"Poppins",sans-serif; font-weight:700; font-size:clamp(2.4rem,9vw,3.2rem); line-height:1; color:var(--teal-strong); letter-spacing:-.02em}
   .mirror{border-left:3px solid var(--teal); padding-left:14px; color:var(--ink-2); font-style:italic}
   .includes{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px}
@@ -150,6 +150,9 @@
   .price .price-row{justify-content:center}
   .cta{align-self:center; max-width:100%; text-align:center}
   .fine{text-align:center}
+  .step-result, .step-notfit, .step-young{gap:32px}
+  .result-top .lead-in{margin-bottom:-16px}
+  .step-result p, .step-notfit p, .step-young p{line-height:1.65}
   footer{text-align:center; font-size:.82rem; color:var(--ink-2)}
 
   .screen{animation:rise .35s ease both}
@@ -290,7 +293,7 @@ const hasAnswer = q => { const k = state.answers[q.id]; return Array.isArray(k) 
 
 function render(){
   const views = {start:viewStart, q:viewQuestion, notfit:viewNotFit, young:viewYoung, result:viewResult};
-  app.innerHTML = `<section class="screen card">${views[state.step]()}</section>`;
+  app.innerHTML = `<section class="screen card step-${state.step}">${views[state.step]()}</section>`;
   bind();
   const h = app.querySelector("h1,h2");
   if (h && state.step !== "start") { h.setAttribute("tabindex","-1"); h.focus({preventScroll:true}); }
@@ -411,7 +414,7 @@ const CLARITY_PRICE = `
     <span class="badge">Oferta por tiempo limitado</span>
     <div class="price-row">
       <span class="was">59 USD</span>
-      <span class="amount">49 USD <small>/ mes</small></span>
+      <span class="amount">47 USD <small>/ mes</small></span>
     </div>
     <p class="value">Pago mensual, cancelas cuando quieras.</p>
   </div>`;
