@@ -184,7 +184,7 @@ const CONFIG = {
 const QUESTIONS = [
   {
     id:"comprehension",
-    q:"Cuando escuchas (con subtítulos) o lees algo en inglés, ¿qué tanto sientes que alcanzas a entender?",
+    q:"Cuando lees algo en inglés o escuchas un video (con subtítulos en inglés), ¿qué tanto entiendes?",
     options:[
       {t:"15% · Muy poco, solo palabras sueltas.", pct:15},
       {t:"30% · Empiezo a entender las ideas, pero aún no sé muchas palabras.", pct:30},
@@ -305,6 +305,7 @@ function render(){
 function viewStart(){
   return `
     <span class="eyebrow">Quiz · 2 minutos</span>
+    <h1>Empecemos por conocerte</h1>
     <p>Hii my dear student, responde ${QUESTIONS.length} preguntas rápidas sobre tu proceso con el inglés. Así revisaremos juntos cómo te puedo ayudar.</p>
     <button class="btn cta" data-act="begin">Empezar el quiz</button>`;
 }
@@ -445,7 +446,7 @@ function viewResult(){
         </ul>
       </div>
       <p class="muted">Lo que no incluye es el plan personalizado, el seguimiento 1:1 y el contacto directo conmigo. Si más adelante quieres ese acompañamiento, puedes pasarte a Fluency.</p>
-      <a class="btn cta" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Clarity</a>
+      <a class="btn cta" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más</a>
       ${CLARITY_FAQ()}
       <div class="alt">
         <button class="link" data-act="undoDownsell" style="align-self:flex-start">Volver a ver Fluency</button>
@@ -458,20 +459,18 @@ function viewResult(){
         <p class="thanks">Gracias por contarme un poquito de tu proceso.</p>
         <p class="lead-in">Creo que donde más te puedo ayudar es en</p>
         <div class="pname">Fluency</div>
-        <p class="defn">Fluency es mi programa grupal de acompañamiento cercano. Estudias en grupos de máximo 6 personas, con dos clases en vivo cada semana, un plan personalizado y seguimiento 1:1 conmigo para que desbloquees tu inglés y lo uses con confianza en tu trabajo, tus viajes y tu vida.</p>
-        <p>Veo que ya tienes base y que puedes mantener una conversación, aunque con dudas y bloqueos. No te falta información: te falta un plan claro y alguien que te acompañe mientras lo cumples.</p>
-        <p>Por eso quiero acompañarte de cerca. En Fluency trabajamos juntos tu speaking y tu pronunciación, y también lo que casi nunca se trabaja: los nervios, el hábito y la confianza para que uses tu inglés donde lo necesitas.</p>
+        <p class="defn">Fluency es mi programa de acompañamiento VIP en el que recibes mi acompañamiento cercano. Aquí trabajamos de la mano por ver resultados reales sin perder el tiempo y dando los pasos correctos.</p>
+        <p>Veo que ya tienes base y que puedes mantener una conversación, aunque con dudas y bloqueos. No te falta información: te falta un plan claro, acorde a tu fase de aprendizaje y a tus necesidades particulares, y alguien que te acompañe mientras lo cumples y sigues construyendo tu vocabulario, tu capacidad de entender el inglés y de usarlo con confianza.</p>
+        <p>En Fluency trabajamos juntos tu speaking y tu pronunciación, y también lo que casi nunca se trabaja: los nervios, la ansiedad, las heridas con el inglés, el hábito de la inmersión y la confianza para que uses tu inglés donde lo necesitas.</p>
       </div>
-      <a class="btn cta" href="${CONFIG.fluencyUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Fluency</a>
-      <p class="fine">En la página verás el video y todos los detalles. Para empezar, dale clic a “Quiero unirme”.</p>
+      <a class="btn cta" href="${CONFIG.fluencyUrl}" target="_blank" rel="noopener">Quiero conocer más</a>
       ${faq([
         ["¿Cuánto dura Fluency?", "Fluency tiene 3 fases: fase 1 (3 meses), fase 2 (6 meses) y fase 3 (3 meses). Pero el tiempo depende de ti. El programa no termina cuando acabas un libro o haces un examen, sino cuando alcanzas los objetivos de cada fase. Yo te acompaño con retroalimentación en cada una para que puedas avanzar."],
         ["¿Cómo son las clases?", "Tienes dos clases en vivo cada semana: una de pronunciación y una de speaking. Los grupos son de máximo 6 estudiantes, así que hablas en todas las clases."],
-        ["¿Cómo es el acompañamiento conmigo?", "Cada mes revisamos juntos tu proceso individual en una sesión 1:1, tienes contacto directo conmigo para resolver dudas en tiempo real y recibes feedback constante."],
+        ["¿Cómo es el acompañamiento conmigo?", "Cada mes revisamos juntos tu proceso individual. Además, tienes contacto directo conmigo para resolver dudas en tiempo real y recibes feedback constante."],
         ["¿Cómo es el pago? ¿Puedo cancelar?", "El pago es mensual y puedes cancelar cuando quieras."],
       ])}
       <div class="alt">
-        <button class="btn block" data-act="downsell" style="background:transparent;color:var(--teal-strong);border:1.5px solid var(--teal)">Este valor no me queda posible ahora</button>
         <button class="link" data-act="restart" style="align-self:flex-start">Hacer el quiz de nuevo</button>
       </div>`;
   }
@@ -497,7 +496,7 @@ function viewResult(){
       ${why}
       <p>Me encantaría verte en la próxima clase en vivo y acompañarte en este proceso.</p>
     </div>
-    <a class="btn cta" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más detalles de Clarity</a>
+    <a class="btn cta" href="${CONFIG.clarityUrl}" target="_blank" rel="noopener">Quiero conocer más</a>
     ${CLARITY_FAQ()}
     <div class="alt">
       <button class="link" data-act="restart" style="align-self:flex-start">Hacer el quiz de nuevo</button>
