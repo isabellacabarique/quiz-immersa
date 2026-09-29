@@ -233,10 +233,9 @@ const QUESTIONS = [
     q:"Para avanzar de verdad, ¿qué tipo de acompañamiento buscas?",
     max:2,
     options:[
-      {t:"Prefiero ir por mi cuenta y resolver dudas de vez en cuando.", c:3},
-      {t:"Buenos recursos para avanzar a mi ritmo.", c:3},
+      {t:"Buenos recursos para avanzar a mi ritmo y resolver dudas de vez en cuando.", c:3, selfPaced:true},
       {t:"Clases en grupo pequeño donde pueda realmente practicar.", f:2, c:1},
-      {t:"Acompañamiento VIP y personalizado: alguien que me diga exactamente qué hacer, revise mi avance y la posibilidad de hacer preguntas cuando lo necesite.", f:4},
+      {t:"Acompañamiento VIP y personalizado: alguien que me diga exactamente qué hacer, revise mi avance y la posibilidad de hacer preguntas cuando lo necesite.", f:4, vip:true},
     ]
   },
   {
@@ -377,6 +376,9 @@ function decide(){
   // Si aún no conversa: primero entrenar oído y boca (Clarity).
   if (talk === "never") return {program:"clarity", reason:"noSpeaking", wantsSupport: f > c};
   if (talk === "short") return {program:"clarity", reason:"noConversation", wantsSupport: f > c};
+  // Busca avanzar a su ritmo (y no marcó VIP): no va a querer un plan VIP, va a Clarity
+  const sup = pick("support") || [];
+  if (sup.some(o => o.selfPaced) && !sup.some(o => o.vip)) return {program:"clarity", reason:"fit", wantsSupport:false};
   // Empate: decide si busca que alguien le diga exactamente qué hacer y revise su avance
   if (f === c){
     const wantsGuide = (pick("support")||[]).some(o => (o.f||0) >= 4);
@@ -449,7 +451,8 @@ function viewResult(){
         <p class="lead-in">Creo que donde más te puedo ayudar es en</p>
         <div class="pname">Fluency</div>
         <p class="defn">Fluency es mi programa de acompañamiento VIP en el que tú y yo trabajamos de la mano por ver resultados reales sin perder el tiempo y dando los pasos correctos.</p>
-        <p>Veo que ya tienes una base y que puedes mantener una conversación, aunque con dudas y bloqueos. No necesitas un curso tradicional más ni te falta información: te falta un plan claro, acorde a tu fase de aprendizaje y a tus necesidades particulares. También necesitas a alguien que te acompañe y guíe para que sigas construyendo tu vocabulario, tu capacidad de entender el inglés y de usarlo con confianza.</p>
+        <p>Veo que ya tienes una buena base de vocabulario que te permite entender el inglés al leer, pero eso no significa que ya puedas usar lo que sabes ni entender el inglés de la vida real sin subtítulos. Por eso sientes que tu mente se queda en blanco cuando te toca hablar, que las palabras que conoces no te salen a tiempo, que traduces todo en tu cabeza antes de responder y que te pierdes cuando te hablan rápido. Al final terminas diciendo mucho menos de lo que realmente quieres decir.</p>
+        <p>No necesitas un curso tradicional más: necesitas un plan claro acorde a tu fase de aprendizaje, empezar a activar el vocabulario que ya conoces, crear los hábitos correctos y evitar los errores que comete todo el mundo.</p>
         <p>En Fluency trabajamos juntos tu speaking y tu pronunciación, y también lo que casi nunca se trabaja: los nervios, la ansiedad, las heridas con el inglés, el hábito de la inmersión y la confianza para que uses tu inglés donde lo necesitas.</p>
       </div>
       <a class="btn cta" href="${CONFIG.fluencyUrl}" target="_blank" rel="noopener">Quiero conocer más</a>
@@ -473,7 +476,7 @@ function viewResult(){
     why = `<p>Veo que ya te has animado a hablar, y eso ya es un paso enorme. Si todavía te cuesta sostener una conversación, no es falta de ganas ni de capacidad: es que tu oído y tu boca aún no han sido entrenados para el inglés en tiempo real.</p>
       <p>En Clarity te voy a enseñar cómo suena el inglés de verdad, vamos a entrenar tu oído hasta que lo entiendas sin traducir, y vas a practicar en voz alta hasta que las frases te salgan solas y puedas ir más allá de las respuestas cortas.</p>`;
   } else {
-    why = `<p>Quiero contarte algo que les digo a muchos de mis estudiantes: no te falta inglés, te falta activarlo. Has estudiado, entiendes, y aun así, cuando te toca hablar, tu boca no responde igual de rápido. No es tu culpa. Tu oído y tu boca nunca fueron entrenados para entender y producir el inglés en tiempo real.</p>
+    why = `<p>Quiero contarte algo: no te falta inglés, te falta activarlo. Has estudiado, entiendes, y aun así, cuando te toca hablar, tu boca no responde igual de rápido. No es tu culpa. Tu oído y tu boca nunca fueron entrenados para entender y producir el inglés en tiempo real.</p>
       <p>En Clarity te voy a enseñar cómo suena el inglés de verdad: sus sonidos, contracciones y reducciones. Vamos a entrenar tu oído hasta que lo entiendas sin traducir, y vas a ver cómo tu boca empieza a hablar con más naturalidad, casi sin darte cuenta.</p>`;
   }
   return `
@@ -481,7 +484,7 @@ function viewResult(){
       <p class="thanks">Gracias por contarme un poquito de tu proceso.</p>
       <p class="lead-in">Creo que el mejor lugar para empezar a trabajar juntos es</p>
       <div class="pname">Clarity</div>
-      <p class="defn">Clarity es mi membresía para desbloquear tu speaking a través de la pronunciación. Ahí encuentras entrenamientos para entender cómo suena el inglés real y avanzas a tu ritmo, con una clase en vivo cada semana para practicar conmigo.</p>
+      <p class="defn">Clarity es mi comunidad para desbloquear tu speaking a través de ejercicios como el shadowing, donde imitas nativos al hablar. Aquí encuentras entrenamientos para entender cómo suena el inglés real y empezar a usarlo, todo a tu ritmo y con una clase en vivo cada semana para practicar y recibir feedback.</p>
       ${why}
       <p>Me encantaría verte en la próxima clase en vivo y acompañarte en este proceso.</p>
     </div>
