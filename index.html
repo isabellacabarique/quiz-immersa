@@ -163,6 +163,7 @@
   .step-result, .step-notfit, .step-young{gap:32px}
   .result-top .lead-in{margin-bottom:-16px}
   .step-result p, .step-notfit p, .step-young p{line-height:1.65}
+  .h1-sub{display:block; font-size:.6em; font-weight:500; color:var(--teal-strong); margin-top:6px}
   footer{text-align:center; font-size:.82rem; color:var(--ink-2)}
 
   .screen{animation:rise .35s ease both}
@@ -313,8 +314,8 @@ function render(){
 function viewStart(){
   return `
     <span class="eyebrow">Quiz · 2 minutos</span>
-    <h1>Empecemos por conocerte</h1>
-    <p>Hii my dear student, responde ${QUESTIONS.length} preguntas rápidas sobre tu proceso con el inglés. Así revisaremos juntos cómo te puedo ayudar.</p>
+    <h1>¿Cuál de mis programas es para ti? <span class="h1-sub">Descubrámoslo juntos</span></h1>
+    <p>My dear student, responde ${QUESTIONS.length} preguntas rápidas sobre tu proceso con el inglés. Así revisaremos juntos cómo te puedo ayudar.</p>
     <button class="btn cta" data-act="begin">Empezar el quiz</button>`;
 }
 
